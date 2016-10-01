@@ -21,10 +21,21 @@ public class CreateMessageActivity extends AppCompatActivity {
     // Se llama este metodo cuando se hace click en el boton
     public void onSendMessage(View view) {
         Intent intent = new Intent(this, ReceiveMessageActivity.class);
-        EditText messageEdit = (EditText)findViewById(R.id.editText);
+        EditText messageEdit = (EditText) findViewById(R.id.editText);
         String messageText = messageEdit.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, messageText);
         startActivity(intent);
+    }
+
+
+    // Se llama este metodo cuando se hace click en el boton
+    public void onCreateChooser(View view) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        EditText messageEdit = (EditText) findViewById(R.id.editText);
+        String messageText = messageEdit.getText().toString();
+        intent.putExtra(Intent.EXTRA_TEXT, messageText);
+        startActivity(Intent.createChooser(intent, "Titulo: ActivityIntent"));
     }
 
 }
